@@ -27,6 +27,7 @@ export const login = (values) => {
 };
 export const register = (values) => {
   return async (dispatch) => {
+    console.log(values);
     await axios
       .post(API_URL + "/register", values, {
         headers: { Accept: "application/json" },

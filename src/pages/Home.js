@@ -6,8 +6,19 @@ import { withStyles } from "@material-ui/core/styles";
 import colors from "../constants/colors";
 import { Skeleton } from "@mui/material";
 // import { Button } from "@material-ui/core";
-import LogoutIcon from "@mui/icons-material/Logout";
-const styles = {};
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import { Button, CardActionArea, CardActions } from "@mui/material";
+import logo from "../assets/logo.png";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+const styles = {
+  main: {
+    padding: 50,
+  },
+};
 const Home = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -29,7 +40,28 @@ const Home = (props) => {
   const { classes } = props;
   return (
     <div className={classes.main}>
-      <p>{user.name}</p>
+      <Card sx={{ maxWidth: 300 }}>
+        <CardActionArea>
+          <CardMedia
+            component="img"
+            height="200"
+            image={logo}
+            alt="green iguana"
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              Shampoo
+            </Typography>
+            <Typography variant="subtitle1" color="green">
+              121,08TND
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+        <CardActions>
+          <FavoriteBorderIcon />
+          <AddShoppingCartIcon />
+        </CardActions>
+      </Card>
     </div>
   );
 };

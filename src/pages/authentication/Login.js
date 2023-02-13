@@ -62,7 +62,7 @@ export default function Login() {
           backgroundColor: "white",
           height: 420,
           borderRadius: 10,
-          marginTop: 130,
+          marginTop: 70,
         }}
       >
         <CssBaseline />
@@ -78,7 +78,7 @@ export default function Login() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Connexion
           </Typography>
           <Box
             component="form"
@@ -92,7 +92,7 @@ export default function Login() {
               type="email"
               fullWidth
               id="email"
-              label="Email Address"
+              label="Email"
               name="email"
               autoComplete="email"
               autoFocus
@@ -102,7 +102,7 @@ export default function Login() {
               required
               fullWidth
               name="password"
-              label="Password"
+              label="Mot de passe"
               type="password"
               id="password"
               autoComplete="current-password"
@@ -122,12 +122,12 @@ export default function Login() {
                 ":hover": { backgroundColor: "black" },
               }}
             >
-              Sign In
+              Connexion
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link href="/register" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                  {"Vous n'avez pas un compte?"}
                 </Link>
               </Grid>
             </Grid>

@@ -26,6 +26,10 @@ const Register = () => {
   const [open, setOpen] = useState(false);
   const [error, setError] = useState("");
   const [openAlert, setOpenAlert] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [password_confirmation, setPassword_Confirmation] = useState("");
   const dispatch = useDispatch();
   const theme = createTheme();
   const navigate = useNavigate();
@@ -38,7 +42,12 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setOpen(true);
-    const data = new FormData(e.currentTarget);
+    console.log(name, email, password, password_confirmation);
+    const data = new FormData();
+    data.append("name", name);
+    data.append("email", email);
+    data.append("password", password);
+    data.append("password_confirmation", password_confirmation);
     const action = authActions.register(data);
     try {
       await dispatch(action);
@@ -51,7 +60,6 @@ const Register = () => {
       setError(err.message);
     }
   };
-
   return (
     <ThemeProvider theme={theme}>
       <Container
@@ -61,7 +69,6 @@ const Register = () => {
           backgroundColor: "white",
           height: 550,
           borderRadius: 10,
-          marginTop: 70,
         }}
       >
         <CssBaseline />
@@ -77,7 +84,7 @@ const Register = () => {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign up
+            Créer un compte
           </Typography>
           <Box
             component="form"
@@ -93,8 +100,9 @@ const Register = () => {
                   required
                   fullWidth
                   id="name"
-                  label="Full Name"
+                  label="Nom complet"
                   autoFocus
+                  onChange={(event) => setName(event.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -103,9 +111,10 @@ const Register = () => {
                   fullWidth
                   id="email"
                   type="email"
-                  label="Email Address"
+                  label="Email"
                   name="email"
                   autoComplete="email"
+                  onChange={(event) => setEmail(event.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -113,21 +122,26 @@ const Register = () => {
                   required
                   fullWidth
                   name="password"
-                  label="Password"
+                  label="Mot de passe"
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  onChange={(event) => setPassword(event.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  error={password !== password_confirmation}
                   required
                   fullWidth
                   name="password_confirmation"
-                  label="Password Confirmation"
+                  label="Confirmation de mot de passe"
                   type="password"
                   id="password_confirmation"
                   autoComplete="new-password"
+                  onChange={(event) =>
+                    setPassword_Confirmation(event.target.value)
+                  }
                 />
               </Grid>
             </Grid>
@@ -142,12 +156,12 @@ const Register = () => {
                 ":hover": { backgroundColor: "black" },
               }}
             >
-              Sign Up
+              Créer un compte
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link href="/login" variant="body2">
-                  Already have an account? Sign in
+                  Déja un compte? Se connecter
                 </Link>
               </Grid>
             </Grid>
