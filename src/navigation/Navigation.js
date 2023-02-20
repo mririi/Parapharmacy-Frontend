@@ -8,6 +8,7 @@ import Login from "../pages/authentication/Login";
 import Register from "../pages/authentication/Register";
 import Home from "../pages/Home";
 import Header from "../components/Header";
+import ProductInfo from "../pages/ProductInfo";
 //import * as authActions from "../store/actions/auth";
 const Navigation = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
@@ -20,6 +21,8 @@ const Navigation = () => {
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/" element={<Home />}></Route>
+          <Route path="/product-info/:id" element={<ProductInfo />}></Route>
+
           {/* <Route element={<GuestLayout />}>
           </Route> */}
           {/* <Route element={<AuthLayout />}>
