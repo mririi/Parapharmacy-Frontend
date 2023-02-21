@@ -1,9 +1,24 @@
 import { Button } from "@mui/material";
-import React from "react";
+import React, { useCallback, useEffect } from "react";
 import productImage from "../assets/product.png";
 import colors from "../constants/colors";
-
-const ProductInfo = ({ params }) => {
+import { useDispatch, useSelector } from "react-redux";
+import * as productsActions from "../store/actions/products";
+import { useParams } from "react-router";
+const ProductInfo = () => {
+  const product = useSelector((state) => state.products.currentProduct);
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  const loadProducts = useCallback(async () => {
+    try {
+      dispatch(productsActions.fetchProductById(id));
+    } catch (err) {
+      console.log(err.message);
+    }
+  }, [dispatch]);
+  useEffect(() => {
+    loadProducts();
+  }, [loadProducts]);
   return (
     <div>
       <div
@@ -39,20 +54,18 @@ const ProductInfo = ({ params }) => {
         </div>
         <div style={{ margin: "5%" }}>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <p style={{ fontSize: "2em" }}>Flip Flops</p>
-            <p style={{ fontSize: "2em", color: "greenyellow" }}>50 DT</p>
+            <p style={{ fontSize: "2em" }}>
+              {product && product.product.title}
+            </p>
+            <p style={{ fontSize: "2em", color: "greenyellow" }}>
+              {product && product.product.price} TND
+            </p>
           </div>
           <p style={{ color: "grey" }}>Catégorie:</p>
-          <p style={{ fontWeight: "600" }}>Orthopedique</p>
+          <p style={{ fontWeight: "600" }}>{product && product.category}</p>
           <p style={{ color: "grey" }}>Description:</p>
           <p style={{ maxWidth: 600 }}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+            {product && product.product.description}
           </p>
           <Button
             style={{ position: "absolute", right: "10%", bottom: "20%" }}

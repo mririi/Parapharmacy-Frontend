@@ -6,13 +6,21 @@ import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
 import product from "../assets/product.png";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import colors from "../constants/colors";
 import { Link } from "react-router-dom";
 const ProductCard = (props) => {
   const { value } = props;
   return (
-    <Card sx={{ maxWidth: 300, borderColor: colors.third, borderWidth: 2 }}>
+    <Card
+      sx={{
+        maxWidth: 300,
+        borderColor: colors.third,
+        borderWidth: 2,
+        marginRight: 5,
+        marginLeft: "1%",
+        marginBottom: "5%",
+      }}
+    >
       <Link to={"/product-info/" + value.id} style={{ textDecoration: "none" }}>
         <CardActionArea>
           <CardMedia

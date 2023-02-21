@@ -7,13 +7,6 @@ import colors from "../constants/colors";
 import { Link } from "react-router-dom";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { useSelector } from "react-redux";
-import {
-  Menu,
-  MenuHandler,
-  MenuList,
-  MenuItem,
-  Button,
-} from "@material-tailwind/react";
 const Header = (props) => {
   const user = useSelector((state) => state.auth.user);
   const { isAuthenticated } = props;
@@ -94,7 +87,9 @@ const Header = (props) => {
           padding: 20,
         }}
       >
-        <p>Orthopedique</p>
+        <Link to="/product-by-category/Orthopédique">
+          <p>Orthopédique</p>
+        </Link>
         <p>Bien étre</p>
         <p>Femme</p>
         <p>Homme</p>
